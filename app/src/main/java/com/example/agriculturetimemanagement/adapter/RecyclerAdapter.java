@@ -21,6 +21,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
+
         ViewHolder(TextView textView) {
             super(textView);
             this.textView = textView;
@@ -52,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        if(data != null) {
+        if (data != null) {
             return data.size();
         } else {
             return 0;
@@ -60,7 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public void setData(final List<EntryEntity> data) {
-        if(this.data == null) {
+        if (this.data == null) {
             this.data = data;
             notifyItemRangeInserted(0, data.size());
         } else {
@@ -77,20 +78,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    if(RecyclerAdapter.this.data instanceof EntryEntity) {
-                        return (RecyclerAdapter.this.data.get(oldItemPosition)).getID().equals(
-                                (data.get(newItemPosition)).getID());
-                        )
-                        return false;
+                    if (RecyclerAdapter.this.data instanceof EntryEntity) {
+                        return (RecyclerAdapter.this.data.get(oldItemPosition)).getId().equals(
+                                (data.get(newItemPosition)).getId());
                     }
+                    return false;
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    if(RecyclerAdapter.this.data instanceof EntryEntity) {
+                    if (RecyclerAdapter.this.data instanceof EntryEntity) {
                         EntryEntity newEntry = data.get(newItemPosition);
                         EntryEntity oldEntry = RecyclerAdapter.this.data.get(newItemPosition);
-                        return Objects.equals(newEntry.getID(), oldEntry.getID());
+                        return Objects.equals(newEntry.getId(), oldEntry.getId());
                     }
                     return false;
                 }
