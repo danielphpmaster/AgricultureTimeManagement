@@ -1,8 +1,10 @@
-package com.example.agriculturetimemanagement;
+package com.example.agriculturetimemanagement.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.agriculturetimemanagement.R;
 
 public class MainActivity extends AppCompatActivity {
 
