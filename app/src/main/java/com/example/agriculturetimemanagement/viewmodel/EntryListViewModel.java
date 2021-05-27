@@ -3,6 +3,7 @@ package com.example.agriculturetimemanagement.viewmodel;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,7 +15,7 @@ import com.example.agriculturetimemanagement.util.OnAsyncEventListener;
 
 import java.util.List;
 
-public class EntryListViewModel {
+public class EntryListViewModel extends AndroidViewModel {
     private EntryRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
