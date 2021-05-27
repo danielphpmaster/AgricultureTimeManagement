@@ -55,4 +55,14 @@ public class EntryRepository {
             }
         });
     }
+
+    public void delete(final EntryEntity entry, OnAsyncEventListener callback) {
+        FirebaseDatabase.getInstance().getReference("entry").child(entry.getId()).removeValue((databaseError, databaseReference) -> {
+            if(databaseError != null) {
+                callback.onFailure(databaseError.toException());
+            } else {
+                callback.onSuccess();
+            }
+        })
+    }
 }
