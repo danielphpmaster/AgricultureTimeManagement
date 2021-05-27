@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "329261164414",
+    "project_id": "agriculturetimemanagement",
+    "storage_bucket": "agriculturetimemanagement.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329261164414:android:892c05b427ddc1f08a352f",
+        "android_client_info": {
+          "package_name": "com.example.agriculturetimemanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329261164414-2kiqeic2e2225g13bu80blslql78033k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPXhrHCreOYh1TafN8WJmU4JLVgbN4Mcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329261164414-2kiqeic2e2225g13bu80blslql78033k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
