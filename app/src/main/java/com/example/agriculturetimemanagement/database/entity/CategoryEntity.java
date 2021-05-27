@@ -1,22 +1,13 @@
 package com.example.agriculturetimemanagement.database.entity;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EntryEntity {
+public class CategoryEntity {
 
     private String id;
 
     private String name;
-
-    private int category;
-
-    private String time;
-
-    public EntryEntity() {
-
-    }
 
     public String getId() {
         return id;
@@ -34,43 +25,28 @@ public class EntryEntity {
         this.name = name;
     }
 
-    public int getCategory() {
-        return category;
-    }
+    public CategoryEntity(){
 
-    public void setCategory(int category) {
-        this.category = category;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof EntryEntity)) return false;
-        EntryEntity o = (EntryEntity) obj;
+        if (!(obj instanceof CategoryEntity)) return false;
+        CategoryEntity o = (CategoryEntity) obj;
         return o.getId().equals(this.getId());
     }
 
     @Override
-    public String toString() {
-        return name + " " + category + " " + time;
+    public String toString() { return name; }
 
-    }
-
-    //@Exclude
+    // @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);
-        result.put("category", category);
-        result.put("time", time);
         return result;
     }
+
+
 }
