@@ -47,7 +47,7 @@ public class EntryListViewModel {
         }
 
         @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        public <T extends ViewModel> T create(Class<T> modelClass) {
             return (T) new EntryListViewModel(application, entryRepository);
         }
     }

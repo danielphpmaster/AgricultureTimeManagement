@@ -12,13 +12,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class EntryRepository {
-    private static EntryEntity instance;
+    private static EntryRepository instance;
 
-    public static EntryEntity getInstance() {
+    public static EntryRepository getInstance() {
         if(instance == null) {
             synchronized (EntryEntity.class) {
                 if(instance == null) {
-                    instance = new EntryEntity();
+                    instance = new EntryRepository();
                 }
             }
         }
@@ -63,6 +63,6 @@ public class EntryRepository {
             } else {
                 callback.onSuccess();
             }
-        })
+        });
     }
 }
