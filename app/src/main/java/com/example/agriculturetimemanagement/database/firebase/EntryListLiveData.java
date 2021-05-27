@@ -7,15 +7,16 @@ import androidx.lifecycle.LiveData;
 
 import com.example.agriculturetimemanagement.database.entity.EntryEntity;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class EntryLiveData extends LiveData<EntryEntity> {
-
-    private static final String TAG = "EntryLiveData";
+public class EntryListLiveData extends LiveData<List<EntryEntity>> {
+    private static final String TAG = "";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public EntryLiveData(DatabaseReference ref){ reference = ref; }
+    public EntryListLiveData(DatabaseReference ref) { reference = ref; }
 
     protected void onActive() {
         Log.d(TAG, "onActive");
@@ -26,15 +27,21 @@ public class EntryLiveData extends LiveData<EntryEntity> {
 
     private class MyValueEventListener implements ValueEventListener {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            if (dataSnapshot.exists()) {
-                EntryEntity entity = dataSnapshot.getValue(EntryEntity.class);
-                entity.setId(dataSnapshot.getKey());
-                setValue(entity);
-            }
+            setValue(toEntryList(dataSnapshot));  //toEntryList ?!
         }
 
-        public void onCancelled(@NonNull DatabaseError databaseError) {
+        public void onCancelled(@NonNull, DatabaseError databaseError) {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
+    }
+
+    private List<EntryEntity> toEntryList(DataSnapshot snapshot) {
+        List<EntryEntity> entrys = new ArrayList<>();
+        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+            EntryEntity entity = childSnapshot.getValue(EntryEntity.class);
+            entity.setId(childSnapshot.getKey());
+            clients.add(entity);
+        }
+        return  entrys;
     }
 }
