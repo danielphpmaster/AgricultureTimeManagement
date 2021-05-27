@@ -6,6 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.example.agriculturetimemanagement.database.entity.EntryEntity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +34,18 @@ public class EntryListLiveData extends LiveData<List<EntryEntity>> {
             setValue(toEntryList(dataSnapshot));  //toEntryList ?!
         }
 
-        public void onCancelled(@NonNull, DatabaseError databaseError) {
+        public void onCancelled(@NonNull DatabaseError databaseError) {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
 
     private List<EntryEntity> toEntryList(DataSnapshot snapshot) {
-        List<EntryEntity> entrys = new ArrayList<>();
+        List<EntryEntity> entries = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             EntryEntity entity = childSnapshot.getValue(EntryEntity.class);
             entity.setId(childSnapshot.getKey());
-            clients.add(entity);
+            entries.add(entity);
         }
-        return  entrys;
+        return entries;
     }
 }
