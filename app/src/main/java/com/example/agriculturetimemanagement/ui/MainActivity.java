@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         setTitle("Entries");
 
         RecyclerView recyclerView = findViewById(R.id.entriesRecyclerView);
