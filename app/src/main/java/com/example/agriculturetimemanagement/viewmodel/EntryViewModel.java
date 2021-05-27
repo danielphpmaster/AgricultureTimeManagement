@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.agriculturetimemanagement.database.entity.EntryEntity;
 import com.example.agriculturetimemanagement.database.repository.EntryRepository;
+import com.example.agriculturetimemanagement.util.OnAsyncEventListener;
 
 public class EntryViewModel extends AndroidViewModel {
 
@@ -40,12 +41,37 @@ public class EntryViewModel extends AndroidViewModel {
 
         private final Application application;
 
-        private final String email;
+        private final String id;
 
         private final EntryRepository repository;
 
-        public Factory(@NonNull Application) {
-
+        public Factory(@NonNull Application application, String id) {
+            this.application = application;
+            this.id = id;
+            repository = EntryRepository.getInstance();
         }
+
+        public <T extends ViewModel> T create(Class<T> modelClass) {
+            //no inspection unchecked
+            return(T) new EntryViewModel(application,id,repository);
+        }
+    }
+
+    /**
+     * Expose the LiveData ClientEntity query so the UI can observe it.
+     */
+
+    public LiveData<EntryEntity> getEntry() {return observableEntry; }
+
+    public void createEntry(EntryEntity entry, OnAsyncEventListener callback) {
+        repository.insert(entry, callback);
+    }
+
+    public void updateEntry(EntryEntity entry, OnAsyncEventListener callback) {
+        repository.update(entry, callback);
+    }
+
+    public void deleteEntry(EntryEntity entry, OnAsyncEventListener callback) {
+        repository.update(entry, callback);
     }
 }
