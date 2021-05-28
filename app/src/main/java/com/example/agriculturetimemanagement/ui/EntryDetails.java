@@ -70,9 +70,9 @@ public class EntryDetails extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         if (entry != null) {
-            menu.add(0, EDIT_ENTRY, Menu.NONE, "Edit").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            menu.add(0, DELETE_ENTRY, Menu.NONE, "Delete").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            menu.add(0, CREATE_ENTRY, Menu.NONE, "Create Entry").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, EDIT_ENTRY, Menu.NONE, "Edit").setIcon(R.drawable.ic_mode_edit_white_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, DELETE_ENTRY, Menu.NONE, "Delete").setIcon(R.drawable.ic_delete_white_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, CREATE_ENTRY, Menu.NONE, "Create Entry").setIcon(R.drawable.ic_add_white_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
         return true;
     }
