@@ -32,7 +32,7 @@ public class EntryViewModel extends AndroidViewModel {
         if (id != null) {
             LiveData<EntryEntity> entry = repository.getEntry(id);
 
-            //observer the changes of the client entity from the database and forward them
+            //observer the changes of the entry entity from the database and forward them
             observableEntry.addSource(entry, observableEntry::setValue);
         }
     }
@@ -53,15 +53,17 @@ public class EntryViewModel extends AndroidViewModel {
 
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //no inspection unchecked
-            return(T) new EntryViewModel(application,id,repository);
+            return (T) new EntryViewModel(application, id, repository);
         }
     }
 
     /**
-     * Expose the LiveData ClientEntity query so the UI can observe it.
+     * Expose the LiveData EntryEntity query so the UI can observe it.
      */
 
-    public LiveData<EntryEntity> getEntry() {return observableEntry; }
+    public LiveData<EntryEntity> getEntry() {
+        return observableEntry;
+    }
 
     public void createEntry(EntryEntity entry, OnAsyncEventListener callback) {
         repository.insert(entry, callback);

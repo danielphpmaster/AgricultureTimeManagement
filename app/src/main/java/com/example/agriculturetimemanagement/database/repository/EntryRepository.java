@@ -15,9 +15,9 @@ public class EntryRepository {
     private static EntryRepository instance;
 
     public static EntryRepository getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             synchronized (EntryEntity.class) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new EntryRepository();
                 }
             }
@@ -38,7 +38,7 @@ public class EntryRepository {
     public void insert(final EntryEntity entry, final OnAsyncEventListener callback) {
         String id = FirebaseDatabase.getInstance().getReference("entry").push().getKey();
         FirebaseDatabase.getInstance().getReference("entry").child(id).setValue(entry, (databaseError, databaseReference) -> {
-            if(databaseError != null) {
+            if (databaseError != null) {
                 callback.onFailure(databaseError.toException());
             } else {
                 callback.onSuccess();
@@ -48,7 +48,7 @@ public class EntryRepository {
 
     public void update(final EntryEntity entry, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance().getReference("entry").child(entry.getId()).updateChildren(entry.toMap(), (databaseError, databaseReference) -> {
-            if(databaseError != null) {
+            if (databaseError != null) {
                 callback.onFailure(databaseError.toException());
             } else {
                 callback.onSuccess();
@@ -58,7 +58,7 @@ public class EntryRepository {
 
     public void delete(final EntryEntity entry, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance().getReference("entry").child(entry.getId()).removeValue((databaseError, databaseReference) -> {
-            if(databaseError != null) {
+            if (databaseError != null) {
                 callback.onFailure(databaseError.toException());
             } else {
                 callback.onSuccess();

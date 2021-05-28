@@ -25,7 +25,7 @@ public class CategoryEntity {
         this.name = name;
     }
 
-    public CategoryEntity(){
+    public CategoryEntity() {
 
     }
 
@@ -39,7 +39,9 @@ public class CategoryEntity {
     }
 
     @Override
-    public String toString() { return name; }
+    public String toString() {
+        return name;
+    }
 
     // @Exclude
     public Map<String, Object> toMap() {

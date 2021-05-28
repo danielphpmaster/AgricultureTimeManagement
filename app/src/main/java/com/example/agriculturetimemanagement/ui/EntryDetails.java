@@ -61,7 +61,7 @@ public class EntryDetails extends AppCompatActivity {
         if (entryId != null) {
             setTitle("Entry Details");
         } else {
-            setTitle("Create Title");
+            setTitle("Create Entry");
             switchEditableMode();
         }
     }
@@ -72,21 +72,21 @@ public class EntryDetails extends AppCompatActivity {
         if (entry != null) {
             menu.add(0, EDIT_ENTRY, Menu.NONE, "Edit").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             menu.add(0, DELETE_ENTRY, Menu.NONE, "Delete").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            menu.add(0, CREATE_ENTRY, Menu.NONE, "Create Client").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, CREATE_ENTRY, Menu.NONE, "Create Entry").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == EDIT_ENTRY) {
-            if(isEditable) {
+        if (item.getItemId() == EDIT_ENTRY) {
+            if (isEditable) {
                 switchEditableMode();
             } else {
                 switchEditableMode();
             }
         }
-        if(item.getItemId() == DELETE_ENTRY) {
+        if (item.getItemId() == DELETE_ENTRY) {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Delete");
             alertDialog.setCancelable(false);
@@ -95,20 +95,20 @@ public class EntryDetails extends AppCompatActivity {
                 viewModel.deleteEntry(entry, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "deleteClient: success");
+                        Log.d(TAG, "deleteEntry: success");
                         onBackPressed();
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        Log.d(TAG, "deleteClient: failure", e);
+                        Log.d(TAG, "deleteEntry: failure", e);
                     }
                 });
             });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", (dialog, which) -> alertDialog.dismiss());
             alertDialog.show();
         }
-        if(item.getItemId() == CREATE_ENTRY) {
+        if (item.getItemId() == CREATE_ENTRY) {
             createEntry(
                     etName.getText().toString(),
                     sCategory.getSelectedItemPosition(),
@@ -135,7 +135,7 @@ public class EntryDetails extends AppCompatActivity {
     }
 
     private void switchEditableMode() {
-        if(!isEditable) {
+        if (!isEditable) {
             etName.setFocusable(true);
             etName.setEnabled(true);
             etName.setFocusableInTouchMode(true);
@@ -209,8 +209,8 @@ public class EntryDetails extends AppCompatActivity {
     }
 
     private void setResponse(Boolean response) {
-        if(response) {
-            statusToast = Toast.makeText(this, "Client edited", Toast.LENGTH_LONG);
+        if (response) {
+            statusToast = Toast.makeText(this, "Entry edited", Toast.LENGTH_LONG);
             statusToast.show();
             onBackPressed();
         } else {
@@ -220,7 +220,7 @@ public class EntryDetails extends AppCompatActivity {
     }
 
     private void updateContent() {
-        if(entry != null) {
+        if (entry != null) {
             etName.setText(entry.getName());
             sCategory.setSelection(entry.getCategory());
             etTime.setText(entry.getTime());

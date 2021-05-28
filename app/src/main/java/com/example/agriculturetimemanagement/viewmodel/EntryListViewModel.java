@@ -60,10 +60,12 @@ public class EntryListViewModel extends AndroidViewModel {
     public void deleteEntry(EntryEntity entry) {
         repository.delete(entry, new OnAsyncEventListener() {
             @Override
-            public void onSuccess() {}
+            public void onSuccess() {
+            }
 
             @Override
-            public void onFailure(Exception e) {}
+            public void onFailure(Exception e) {
+            }
         });
     }
 }

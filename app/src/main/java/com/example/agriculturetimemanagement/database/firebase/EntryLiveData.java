@@ -19,14 +19,18 @@ public class EntryLiveData extends LiveData<EntryEntity> {
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public EntryLiveData(DatabaseReference ref){ reference = ref; }
+    public EntryLiveData(DatabaseReference ref) {
+        reference = ref;
+    }
 
     protected void onActive() {
         Log.d(TAG, "onActive");
         reference.addValueEventListener(listener);
     }
 
-    protected void onInactive() {Log.d(TAG, "onInactive");}
+    protected void onInactive() {
+        Log.d(TAG, "onInactive");
+    }
 
     private class MyValueEventListener implements ValueEventListener {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
